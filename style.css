@@ -1,0 +1,85 @@
+/* ===== A_W Community Website Style ===== */
+
+/* Whole page */
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #0d0d0d;
+    color: white;
+}
+
+/* Top Navigation Bar */
+.navbar {
+    background: #111;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px #00eaff;
+}
+
+.navbar h1 {
+    font-size: 24px;
+    color: #00eaff;
+    margin: 0;
+}
+
+/* Navigation links */
+.navbar a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #00eaff;
+    text-shadow: 0 0 10px #00eaff;
+}
+
+/* Main Section */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #00eaff;
+}
+
+.hero p {
+    font-size: 20px;
+    opacity: 0.8;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #00eaff;
+    color: #000;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 18px;
+    margin-top: 20px;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #fff;
+    box-shadow: 0 0 20px #00eaff;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+    margin-top: 50px;
+    font-size: 14px;
+    color: #777;
+}
