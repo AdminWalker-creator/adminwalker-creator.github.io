@@ -1,40 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A_W Community</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+    <!-- HEADER -->
+    <header>Welcome To A_W Community</header>
 
-    <div class="container">
-        <h1 class="title">A_W Community</h1>
-        <p class="subtitle">Welcome to the official community of Admin_Walker — Creator!</p>
+    <!-- NAV BAR -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#join">Join</a>
+        <a href="#chat">Chat</a>
+        <a href="#profile">Profile</a>
+    </nav>
 
-        <div class="buttons">
-            <a href="https://discord.gg/fWKBXeT6P" class="btn" target="_blank">Join Discord</a>
-            <a href="https://www.youtube.com/@Admin_Walker" class="btn" target="_blank">Subscribe on YouTube</a>
-            <a href="https://chat.whatsapp.com/JE0Wdo8p7SqDEnTaGpydvw?mode=hqrt2" class="btn" target="_blank">Join WhatsApp Group</a>
+    <!-- HOME -->
+    <section class="hero" id="home">
+        <p>The official community of Admin_Walker – connect, chat, play, and grow!</p>
+
+        <button onclick="openLinks()" class="glow-btn">Join Now</button>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="card" id="about">
+        <h2>About Us</h2>
+        <p>A_W Community is built for gamers, friends, and creators.</p>
+    </section>
+
+    <!-- JOIN SECTION WITH BUTTONS -->
+    <section class="card" id="join">
+        <h2>Join Our Community</h2>
+
+        <div class="join-buttons">
+            <a href="https://discord.gg/fWKBXeT6P" target="_blank" class="link-btn discord">Discord</a>
+            <a href="https://chat.whatsapp.com/JE0Wdo8p7SqDEnTaGpydvw?mode=hqrt2" target="_blank" class="link-btn whatsapp">WhatsApp</a>
+            <a href="https://www.youtube.com/@Admin_Walker" target="_blank" class="link-btn youtube">YouTube</a>
         </div>
-    </div>
+    </section>
+
+    <!-- CHATBOX -->
+    <section class="card" id="chat">
+        <h2>Community Chat</h2>
+        <div id="chatbox"></div>
+
+        <div class="chat-controls">
+            <input type="text" id="chatInput" placeholder="Type your message..." />
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="card" id="profile">
+        <h2>Your Profile</h2>
+        <label>Enter Username:</label>
+        <input type="text" id="usernameInput" placeholder="Your username" />
+
+        <button onclick="saveUsername()">Save</button>
+
+        <p id="savedUser"></p>
+    </section>
+
+    <footer>
+        © 2025 A_W Community — Created by Admin_Walker
+    </footer>
 
     <script src="script.js"></script>
 </body>
-</html>
-<section class="card" id="join">
-    <h2>Join Our Community</h2>
-    <p>Be a part of the growing A_W family!</p>
-    <p>Discord, WhatsApp, and more links can be added here.</p>
-</section>
-
-<footer>
-    © 2025 A_W Community — Created by Admin_Walker
-</footer>
-
-</body>
-</html><footer>
-    © 2025 A_W Community — Created by Admin_Walker
+</html>    © 2025 A_W Community — Created by Admin_Walker
 </footer>
 
 </body>
