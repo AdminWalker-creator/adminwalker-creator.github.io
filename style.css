@@ -1,40 +1,97 @@
-/* ===== A_W Community Website Style ===== */
-
-/* Whole page */
 body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
     background: #0d0d0d;
     color: white;
-}
-
-/* Top Navigation Bar */
-.navbar {
-    background: #111;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 0 10px #00eaff;
-}
-
-.navbar h1 {
-    font-size: 24px;
-    color: #00eaff;
+    font-family: Arial, sans-serif;
     margin: 0;
+    padding: 0;
 }
 
-/* Navigation links */
-.navbar a {
-    color: white;
-    margin-left: 20px;
-    text-decoration: none;
-    font-size: 18px;
-    transition: 0.3s;
+/* Header */
+header {
+    text-align: center;
+    padding: 40px 10px;
 }
 
-.navbar a:hover {
+h1 {
     color: #00eaff;
+    font-size: 40px;
+}
+
+p {
+    font-size: 18px;
+}
+
+/* Cards */
+.card {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background: #111;
+    box-shadow: 0 0 15px #00eaff50;
+}
+
+/* Buttons */
+.button-box {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+button {
+    background: #00eaff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #00a5c7;
+}
+
+/* Chatbox */
+.chatbox-section {
+    margin: 20px;
+    padding: 20px;
+    background: #111;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #00eaff50;
+}
+
+#chatbox {
+    height: 250px;
+    overflow-y: auto;
+    background: #000;
+    border: 1px solid #00eaff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.chat-msg {
+    padding: 6px;
+    margin: 4px 0;
+    background: #00eaff25;
+    border-radius: 5px;
+}
+
+.chat-input-area {
+    display: flex;
+    gap: 10px;
+}
+
+#chatInput {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #00eaff;
+    background: #000;
+    color: white;
+}    color: #00eaff;
     text-shadow: 0 0 10px #00eaff;
 }
 
