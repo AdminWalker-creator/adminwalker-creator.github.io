@@ -1,40 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A_W Community</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-    <h1>Welcome to A_W Community</h1>
-    <p>The official community of Admin_Walker — connect, chat, play, and grow!</p>
-</header>
+    <header>A_W Community</header>
 
-<section class="card">
-    <h2>About Us</h2>
-    <p>A_W Community is built for gamers, friends, and creators. We bring people together to chat, share ideas, play games, and have fun.</p>
-</section>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#join">Join</a>
+    </nav>
 
-<section class="card">
-    <h2>Join Our Community</h2>
-    <p>Be a part of the growing A_W family!</p>
+    <section class="hero" id="home">
+        <h1>Welcome to A_W Community</h1>
+        <p>The official community of Admin_Walker – connect, chat, play, and grow!</p>
+        <button id="joinBtn" class="glow-btn">Join Now</button>
+    </section>
 
-    <div class="button-box">
-        <button onclick="openLink('https://discord.com/')">Discord</button>
-        <button onclick="openLink('https://wa.me/')">WhatsApp</button>
-        <button onclick="openLink('https://youtube.com/')">YouTube</button>
+    <section class="card" id="about">
+        <h2>About Us</h2>
+        <p>A_W Community is built for gamers, friends, and creators. We bring people together
+        to chat, share ideas, play games, and have fun.</p>
+    </section>
+
+    <section class="card" id="join">
+        <h2>Join Our Community</h2>
+        <p>Be a part of the growing A_W family!</p>
+        <p>Discord, WhatsApp, and more links can be added here.</p>
+    </section>
+
+    <!-- Popup Modal -->
+    <div id="popup" class="popup">
+        <div class="popup-box">
+            <h2>Join Our Community</h2>
+
+            <a class="popup-btn discord" href="https://discord.gg/fWKBXeT6P" target="_blank">Join Discord</a>
+            <a class="popup-btn youtube" href="https://www.youtube.com/@Admin_Walker" target="_blank">YouTube Channel</a>
+            <a class="popup-btn whatsapp" href="https://chat.whatsapp.com/JE0Wdo8p7SqDEnTaGpydvw?mode=hqrt2" target="_blank">Join WhatsApp</a>
+
+            <button id="closePopup" class="close-btn">Close</button>
+        </div>
     </div>
-</section>
 
-<section class="chatbox-section">
-    <h2>Community Chatbox</h2>
+    <footer>
+        © 2025 A_W Community — Created by Admin_Walker
+    </footer>
 
-    <div id="chatbox"></div>
-
-    <div class="chat-input-area">
+    <script src="script.js"></script>
+</body>
+</html>    <div class="chat-input-area">
         <input type="text" id="chatInput" placeholder="Type a message...">
         <button onclick="sendMessage()">Send</button>
     </div>
