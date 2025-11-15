@@ -1,81 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A_W Community</title>
-    <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A_W Community</title>
+
+<style>
+    body {
+        margin: 0;
+        background: #020814;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    .logo {
+        margin-top: 40px;
+        width: 140px;
+        border-radius: 8px;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin-top: 10px;
+    }
+
+    a {
+        color: #4cd4c2;
+        text-decoration: none;
+        margin: 0 5px;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .subtext {
+        margin-top: 15px;
+        font-size: 16px;
+    }
+
+    .box {
+        margin: 40px auto;
+        border: 2px solid #00c4a8;
+        padding: 20px;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    .box-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .links {
+        margin-top: 20px;
+        line-height: 2;
+        font-size: 18px;
+    }
+</style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <header>Welcome To A_W Community</header>
+    <!-- Logo -->
+    <img src="logo.png" class="logo" alt="A_W Logo">
 
-    <!-- NAV BAR -->
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#join">Join</a>
-        <a href="#chat">Chat</a>
-        <a href="#profile">Profile</a>
-    </nav>
+    <!-- Title -->
+    <h1>Welcome To A_W Community</h1>
 
-    <!-- HOME -->
-    <section class="hero" id="home">
-        <h1>Welcome to A_W Community</h1>
-        <p>The official community of Admin_Walker – connect, chat, play, and grow!</p>
-        <button onclick="openLinks()" class="glow-btn">Join Now</button>
-    </section>
+    <!-- Navigation -->
+    <div>
+        <a href="#">Home</a> |
+        <a href="#">Profile</a> |
+        <a href="#">About Us</a> |
+        <a href="#">Join</a> |
+        <a href="#">Chat</a>
+    </div>
 
-    <!-- ABOUT -->
-    <section class="card" id="about">
-        <h2>About Us</h2>
+    <!-- Subtext -->
+    <p class="subtext">
+        The Official Website Of <span class="bold">Admin_Walker</span> — Connect, Chat, Play And Grow!
+    </p>
+
+    <!-- About Us Box -->
+    <div class="box">
+        <div class="box-title">About Us</div>
         <p>
-            A_W Community is built for gamers, friends, and creators.
-            We bring people together to chat, share ideas, play games, and have fun.
+            <span class="bold">A_W Community</span> is a friendly space where gamers and creators connect, chat, and have fun together.
         </p>
-    </section>
+    </div>
 
-    <!-- JOIN -->
-    <section class="card" id="join">
-        <h2>Join Our Community</h2>
+    <!-- Join Section -->
+    <h2>Join Our Community</h2>
 
-        <div class="join-buttons">
-            <a href="https://discord.gg/fWKBK0ETgr" target="_blank" class="link-btn discord">Discord</a>
-            <a href="https://chat.whatsapp.com/J0EWD0g75p0TGa0pdy0nw0" target="_blank" class="link-btn whatsapp">WhatsApp</a>
-            <a href="https://www.youtube.com/@Admin_Walker" target="_blank" class="link-btn youtube">YouTube</a>
-        </div>
-    </section>
+    <div class="links">
+        Discord — <a href="https://discord.gg/fWKBXeT6P">https://discord.gg/fWKBXeT6P</a><br>
+        YouTube — <a href="https://www.youtube.com/@Admin_Walker">https://www.youtube.com/@Admin_Walker</a><br>
+        WhatsApp — <a href="https://chat.whatsapp.com/JE0Wdo8p7SqDEnTaGpydvw?mode=hqrt2">WhatsApp Group Link</a>
+    </div>
 
-    <!-- CHAT -->
-    <section class="card" id="chat">
-        <h2>Community Chat</h2>
-
-        <div id="chatbox"></div>
-
-        <div class="chat-controls">
-            <input type="text" id="chatInput" placeholder="Type your message..." />
-            <button onclick="sendMessage()">Send</button>
-        </div>
-    </section>
-
-    <!-- PROFILE -->
-    <section class="card" id="profile">
-        <h2>Your Profile</h2>
-        <label>Enter Username:</label>
-        <input type="text" id="usernameInput" placeholder="Your username" />
-        
-        <button onclick="saveUsername()">Save</button>
-
-        <p id="savedUser"></p>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        © 2025 A_W Community — Created by Admin_Walker
-    </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
