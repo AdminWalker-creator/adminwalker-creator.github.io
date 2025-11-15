@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>A_W Community Chat</title>
 
 <style>
     body {
         margin: 0;
         background: #020814;
-        font-family: Arial, sans-serif;
         color: white;
+        font-family: Arial, sans-serif;
         display: flex;
         flex-direction: column;
         height: 100vh;
@@ -18,7 +18,7 @@
 
     h1 {
         text-align: center;
-        margin: 20px 0;
+        padding: 15px 0;
     }
 
     #chat-box {
@@ -26,40 +26,44 @@
         overflow-y: auto;
         background: #0b1426;
         border: 2px solid #00c4a8;
-        margin: 0 20px;
+        margin: 0 15px;
         padding: 10px;
         border-radius: 10px;
     }
 
-    .message {
+    .msg {
         background: #112039;
         padding: 10px;
         margin-bottom: 10px;
         border-radius: 8px;
+        word-wrap: break-word;
+    }
+
+    .username {
+        font-weight: bold;
+        color: #00c4a8;
     }
 
     #input-area {
         display: flex;
-        padding: 15px;
+        padding: 10px;
         background: #0b1426;
     }
 
-    #message-input {
+    #name-input, #message-input {
         flex: 1;
+        margin-right: 10px;
         padding: 10px;
-        font-size: 16px;
-        border: none;
         border-radius: 6px;
+        border: none;
         outline: none;
     }
 
     #send-btn {
-        padding: 10px 18px;
-        margin-left: 10px;
+        padding: 10px 20px;
         background: #00c4a8;
         border: none;
         border-radius: 6px;
-        color: black;
         font-weight: bold;
         cursor: pointer;
     }
@@ -77,27 +81,70 @@
 <div id="chat-box"></div>
 
 <div id="input-area">
-    <input type="text" id="message-input" placeholder="Type your message...">
+    <input type="text" id="name-input" placeholder="Your name..." />
+    <input type="text" id="message-input" placeholder="Type a message..." />
     <button id="send-btn">Send</button>
 </div>
 
-<script>
+<!-- FIREBASE SCRIPTS -->
+<script type="module">
+    // Firebase imports
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy } 
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // Your Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyCUw599ZSYdjmv5uJFgsxyRW16Fs9ef4Qg",
+      authDomain: "aw-community-chat.firebaseapp.com",
+      projectId: "aw-community-chat",
+      storageBucket: "aw-community-chat.firebasestorage.app",
+      messagingSenderId: "753015399762",
+      appId: "1:753015399762:web:50e8094b2d0cf4a344c68b"
+    };
+
+    // Init Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
     const chatBox = document.getElementById("chat-box");
-    const input = document.getElementById("message-input");
+    const nameInput = document.getElementById("name-input");
+    const messageInput = document.getElementById("message-input");
     const sendBtn = document.getElementById("send-btn");
 
-    sendBtn.onclick = () => {
-        const text = input.value.trim();
-        if (text === "") return;
+    // Send message
+    sendBtn.onclick = async () => {
+        const name = nameInput.value.trim();
+        const text = messageInput.value.trim();
+        if (name === "" || text === "") return;
 
-        const msg = document.createElement("div");
-        msg.className = "message";
-        msg.innerText = text;
-        chatBox.appendChild(msg);
+        await addDoc(collection(db, "messages"), {
+            name: name,
+            text: text,
+            time: serverTimestamp()
+        });
 
-        input.value = "";
-        chatBox.scrollTop = chatBox.scrollHeight;
+        messageInput.value = "";
     };
+
+    // Live update messages
+    const q = query(collection(db, "messages"), orderBy("time"));
+    onSnapshot(q, (snapshot) => {
+        chatBox.innerHTML = "";
+        snapshot.forEach((doc) => {
+            const msg = doc.data();
+
+            const div = document.createElement("div");
+            div.className = "msg";
+            div.innerHTML = `
+                <div class="username">${msg.name}</div>
+                <div>${msg.text}</div>
+            `;
+            chatBox.appendChild(div);
+        });
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+    });
 </script>
 
 </body>
