@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A_W Community Chat</title>
+
+<style>
+    body {
+        margin: 0;
+        background: #020814;
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .chat-box {
+        width: 90%;
+        max-width: 600px;
+        margin: 0 auto;
+        background: #0f1724;
+        border: 2px solid #00c4a8;
+        border-radius: 10px;
+        padding: 10px;
+        height: 70vh;
+        overflow-y: auto;
+    }
+
+    .input-area {
+        width: 90%;
+        max-width: 600px;
+        margin: 15px auto;
+        display: flex;
+        gap: 10px;
+    }
+
+    input {
+        flex: 1;
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+    }
+
+    button {
+        padding: 10px 15px;
+        background: #00c4a8;
+        border: none;
+        border-radius: 8px;
+        color: black;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #02e6c4;
+    }
+
+    .msg {
+        padding: 8px;
+        background: #1b2433;
+        border-radius: 6px;
+        margin: 5px 0;
+    }
+
+</style>
+</head>
+
+<body>
+
+<h1>A_W Community Chat</h1>
+
+<div class="chat-box" id="chatBox"></div>
+
+<div class="input-area">
+    <input type="text" id="messageInput" placeholder="Type a message...">
+    <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+function sendMessage() {
+    const input = document.getElementById("messageInput");
+    const chat = document.getElementById("chatBox");
+
+    if (input.value.trim() === "") return;
+
+    const msg = document.createElement("div");
+    msg.className = "msg";
+    msg.innerText = input.value;
+
+    chat.appendChild(msg);
+    input.value = "";
+    
+    chat.scrollTop = chat.scrollHeight;
+}
+</script>
+
+</body>
+</html>
