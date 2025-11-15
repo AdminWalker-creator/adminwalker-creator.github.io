@@ -9,63 +9,64 @@
     body {
         margin: 0;
         background: #020814;
-        color: white;
         font-family: Arial, sans-serif;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
     }
 
     h1 {
         text-align: center;
-        padding: 20px;
+        margin: 20px 0;
     }
 
-    .chat-box {
-        width: 90%;
-        max-width: 600px;
-        margin: 0 auto;
-        background: #0f1724;
-        border: 2px solid #00c4a8;
-        border-radius: 10px;
-        padding: 10px;
-        height: 70vh;
+    #chat-box {
+        flex: 1;
         overflow-y: auto;
+        background: #0b1426;
+        border: 2px solid #00c4a8;
+        margin: 0 20px;
+        padding: 10px;
+        border-radius: 10px;
     }
 
-    .input-area {
-        width: 90%;
-        max-width: 600px;
-        margin: 15px auto;
+    .message {
+        background: #112039;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+
+    #input-area {
         display: flex;
-        gap: 10px;
+        padding: 15px;
+        background: #0b1426;
     }
 
-    input {
+    #message-input {
         flex: 1;
         padding: 10px;
-        border-radius: 8px;
+        font-size: 16px;
         border: none;
+        border-radius: 6px;
+        outline: none;
     }
 
-    button {
-        padding: 10px 15px;
+    #send-btn {
+        padding: 10px 18px;
+        margin-left: 10px;
         background: #00c4a8;
         border: none;
-        border-radius: 8px;
+        border-radius: 6px;
         color: black;
         font-weight: bold;
         cursor: pointer;
     }
 
-    button:hover {
-        background: #02e6c4;
+    #send-btn:hover {
+        background: #00e2c2;
     }
-
-    .msg {
-        padding: 8px;
-        background: #1b2433;
-        border-radius: 6px;
-        margin: 5px 0;
-    }
-
 </style>
 </head>
 
@@ -73,29 +74,30 @@
 
 <h1>A_W Community Chat</h1>
 
-<div class="chat-box" id="chatBox"></div>
+<div id="chat-box"></div>
 
-<div class="input-area">
-    <input type="text" id="messageInput" placeholder="Type a message...">
-    <button onclick="sendMessage()">Send</button>
+<div id="input-area">
+    <input type="text" id="message-input" placeholder="Type your message...">
+    <button id="send-btn">Send</button>
 </div>
 
 <script>
-function sendMessage() {
-    const input = document.getElementById("messageInput");
-    const chat = document.getElementById("chatBox");
+    const chatBox = document.getElementById("chat-box");
+    const input = document.getElementById("message-input");
+    const sendBtn = document.getElementById("send-btn");
 
-    if (input.value.trim() === "") return;
+    sendBtn.onclick = () => {
+        const text = input.value.trim();
+        if (text === "") return;
 
-    const msg = document.createElement("div");
-    msg.className = "msg";
-    msg.innerText = input.value;
+        const msg = document.createElement("div");
+        msg.className = "message";
+        msg.innerText = text;
+        chatBox.appendChild(msg);
 
-    chat.appendChild(msg);
-    input.value = "";
-    
-    chat.scrollTop = chat.scrollHeight;
-}
+        input.value = "";
+        chatBox.scrollTop = chatBox.scrollHeight;
+    };
 </script>
 
 </body>
