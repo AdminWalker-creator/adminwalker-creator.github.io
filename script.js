@@ -1,18 +1,18 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } 
+import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 // 🔥 Your Firebase Config
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_BUCKET",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCUw599ZSYdjmv5uJFgsxyRW16Fs9ef4Qg",
+  authDomain: "aw-community-chat.firebaseapp.com",
+  projectId: "aw-community-chat",
+  storageBucket: "aw-community-chat.firebasestorage.app",
+  messagingSenderId: "753015399762",
+  appId: "1:753015399762:web:50e8094b2d0cf4a344c68b"
 };
 
-// Init Firestore
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -22,10 +22,11 @@ const nameInput = document.getElementById("name-input");
 const messageInput = document.getElementById("message-input");
 const sendBtn = document.getElementById("send-btn");
 
-// Send message
+// Send Message
 sendBtn.onclick = async () => {
     const name = nameInput.value.trim();
     const text = messageInput.value.trim();
+
     if (!name || !text) return;
 
     await addDoc(collection(db, "messages"), {
@@ -37,13 +38,11 @@ sendBtn.onclick = async () => {
     messageInput.value = "";
 };
 
-// Realtime listener
+// Real-time updates
 const q = query(collection(db, "messages"), orderBy("time"));
-
-onSnapshot(q, (snapshot) => {
+onSnapshot(q, snapshot => {
     chatBox.innerHTML = "";
-
-    snapshot.forEach((doc) => {
+    snapshot.forEach(doc => {
         const msg = doc.data();
 
         const div = document.createElement("div");
@@ -52,6 +51,5 @@ onSnapshot(q, (snapshot) => {
 
         chatBox.appendChild(div);
     });
-
     chatBox.scrollTop = chatBox.scrollHeight;
 });
