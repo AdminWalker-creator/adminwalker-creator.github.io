@@ -1,37 +1,23 @@
-// JOIN NOW BUTTON
-function openLinks() {
-    window.open("https://discord.gg/fWKBXeT6P", "_blank");
-    window.open("https://chat.whatsapp.com/JE0Wdo8p7SqDEnTaGpydvw?mode=hqrt2", "_blank");
-    window.open("https://www.youtube.com/@Admin_Walker", "_blank");
-}
+// Import Firebase SDKs
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } 
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// CHATBOX (local demo)
-function sendMessage() {
-    let box = document.getElementById("chatbox");
-    let input = document.getElementById("chatInput");
-
-    if (input.value.trim() === "") return;
-
-    let user = localStorage.getItem("username") || "Guest";
-
-    box.innerHTML += `<p><strong>${user}:</strong> ${input.value}</p>`;
-    input.value = "";
-    box.scrollTop = box.scrollHeight;
-}
-
-// PROFILE SYSTEM
-function saveUsername() {
-    let name = document.getElementById("usernameInput").value;
-    if (name.trim() === "") return;
-
-    localStorage.setItem("username", name);
-    document.getElementById("savedUser").innerText = "Saved Username: " + name;
-}
-
-// Load username when page opens
-window.onload = function () {
-    let saved = localStorage.getItem("username");
-    if (saved) {
-        document.getElementById("savedUser").innerText = "Saved Username: " + saved;
-    }
+// Firebase Config
+const firebaseConfig = {
+  apiKey: "AIzaSyCUw599ZSYdjmv5uJFgsxyRW16Fs9ef4Qg",
+  authDomain: "aw-community-chat.firebaseapp.com",
+  projectId: "aw-community-chat",
+  storageBucket: "aw-community-chat.firebasestorage.app",
+  messagingSenderId: "753015399762",
+  appId: "1:753015399762:web:50e8094b2d0cf4a344c68b"
 };
+
+// Initialize Firebase App
+const app = initializeApp(firebaseConfig);
+
+// Init Firestore
+const db = getFirestore(app);
+
+// Export db so other scripts can use it
+export { db, collection, addDoc, onSnapshot, serverTimestamp };
