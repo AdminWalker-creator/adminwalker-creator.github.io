@@ -1,46 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A_W Community</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A_W Community Chat</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <img src="logo.png" class="logo" alt="A_W Logo">
-    <h1>Welcome To A_W Community</h1>
+    <h1>A_W Community Chat</h1>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="chat.html">Chat</a>
-        <a href="create.html">Create Community</a>
-    </nav>
-</header>
+    <div id="chat-box" style="border:1px solid #fff; width:90%; height:300px; overflow-y:auto; margin:auto;"></div>
 
-<section class="hero">
-    <h2>A place for gamers and creators</h2>
-    <p>Connect • Chat • Build • Grow</p>
+    <input id="name-input" type="text" placeholder="Your Name">
+    <input id="message-input" type="text" placeholder="Your Message">
+    <button id="send-btn">Send</button>
 
-    <div class="buttons">
-        <a href="chat.html" class="btn">Enter Chat</a>
-        <a href="https://discord.gg/fWKBXeT6P" class="btn">Join Discord</a>
-    </div>
-</section>
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy } 
+        from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-<section class="box">
-    <h3>About A_W Community</h3>
-    <p>
-        <b>A_W Community</b> is a friendly space where gamers and creators 
-        connect, chat, and have fun together.
-    </p>
-</section>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCUw599ZSYdjmv5uJFgsxyRW16Fs9ef4Qg",
+            authDomain: "aw-community-chat.firebaseapp.com",
+            projectId: "aw-community-chat",
+            storageBucket: "aw-community-chat.firebasestorage.app",
+            messagingSenderId: "753015399762",
+            appId: "1:753015399762:web:50e8094b2d0cf4a344c68b"
+        };
 
-<footer>
-    <p>Made with ❤️ by Admin_Walker</p>
-</footer>
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const chatBox = document.getElementById("chat-box");
+        const nameInput = document.getElementById("name-input");
+        const messageInput = document.getElementById("message-input");
+        const sendBtn = document.getElementById("send-btn");
+
+        // SEND MESSAGE
+        sendBtn.onclick = async () => {
+            const name = nameInput.value.trim();
+            const text = messageInput.value.trim();
+            if (!name || !text) return;
+
+            await addDoc(collection(db, "messages"), {
+                name,
+                text,
+                time: serverTimestamp()
+            });
+
+            messageInput.value = "";
+        };
+
+        // REAL TIME LISTEN
+        const q = query(collection(db, "messages"), orderBy("time"));
+        onSnapshot(q, (snapshot) => {
+            chatBox.innerHTML = "";
+            snapshot.forEach((doc) => {
+                const msg = doc.data();
+                const div = document.createElement("div");
+                div.textContent = msg.name + ": " + msg.text;
+                chatBox.appendChild(div);
+            });
+            chatBox.scrollTop = chatBox.scrollHeight;
+        });
+    </script>
 
 </body>
 </html>
