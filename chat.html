@@ -1,77 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Chat • A_W Community</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>A_W Community — Chat</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header class="topbar">
+    <div class="left">
+      <img src="logo.png" class="logo" alt="A_W Logo">
+      <h1>A_W Community</h1>
+    </div>
 
-<header>
-    <img src="logo.png" class="logo">
-    <h1>A_W Community Chat</h1>
+    <div class="right">
+      <select id="roomSelect" title="Select room"></select>
+      <span id="onlineCount">Online: 0</span>
+      <button id="adminBtn" class="small">Admin</button>
+    </div>
+  </header>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="chat.html">Chat</a>
-        <a href="create.html">Create Community</a>
-    </nav>
-</header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="panel">
+        <h3>Profile</h3>
+        <input id="nameInput" placeholder="Your name" />
+        <input id="avatarInput" placeholder="Avatar URL (optional)" />
+        <div class="small muted">Owner: <strong>A_W</strong> — Admin: <strong>Admin</strong></div>
+      </div>
 
-<section class="box">
-    <h2>Global Chat</h2>
+      <div class="panel">
+        <h3>Rooms</h3>
+        <div id="roomsList"></div>
+      </div>
 
-    <input type="text" id="username" placeholder="Enter username..." class="input">
-    <div id="chatbox" class="chatbox"></div>
+      <div class="panel">
+        <h3>Typing</h3>
+        <div id="typingIndicator" class="small muted"></div>
+      </div>
+    </aside>
 
-    <input type="text" id="message" placeholder="Type message..." class="input">
-    <button onclick="sendMessage()" class="btn">Send</button>
-</section>
+    <section class="chat-area">
+      <div id="messages" aria-live="polite"></div>
 
-<script src="script.js"></script>
+      <div class="input-row">
+        <input id="messageInput" placeholder="Type a message..." autocomplete="off" />
+        <button id="sendBtn" class="btn">Send</button>
+      </div>
+    </section>
+  </main>
 
-</body>
-</html>    const db = getFirestore(app);
+  <footer class="foot">© 2025 A_W Community</footer>
 
-    const chatBox = document.getElementById("chat-box");
-    const nameInput = document.getElementById("name-input");
-    const messageInput = document.getElementById("message-input");
-    const sendBtn = document.getElementById("send-btn");
-
-    // Send message
-    sendBtn.onclick = async () => {
-        const name = nameInput.value.trim();
-        const text = messageInput.value.trim();
-        if (name === "" || text === "") return;
-
-        await addDoc(collection(db, "messages"), {
-            name: name,
-            text: text,
-            time: serverTimestamp()
-        });
-
-        messageInput.value = "";
-    };
-
-    // Live update messages
-    const q = query(collection(db, "messages"), orderBy("time"));
-    onSnapshot(q, (snapshot) => {
-        chatBox.innerHTML = "";
-        snapshot.forEach((doc) => {
-            const msg = doc.data();
-
-            const div = document.createElement("div");
-            div.className = "msg";
-            div.innerHTML = `
-                <div class="username">${msg.name}</div>
-                <div>${msg.text}</div>
-            `;
-            chatBox.appendChild(div);
-        });
-
-        chatBox.scrollTop = chatBox.scrollHeight;
-    });
-</script>
-
+  <!-- main script (module for firebase imports) -->
+  <script type="module" src="script.js"></script>
 </body>
 </html>
