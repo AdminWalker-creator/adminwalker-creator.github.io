@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Create Community</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<header>
+    <img src="logo.png" class="logo">
+    <h1>Create Your Own Community</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="chat.html">Chat</a>
+        <a href="create.html">Create Community</a>
+    </nav>
+</header>
+
+<section class="box">
+    <h2>New Community</h2>
+
+    <input type="text" id="commName" class="input" placeholder="Community Name">
+    <input type="text" id="commDesc" class="input" placeholder="Community Description">
+    <input type="text" id="commLogo" class="input" placeholder="Logo URL (optional)">
+
+    <button onclick="createCommunity()" class="btn">Create Community</button>
+
+    <p id="createStatus"></p>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
