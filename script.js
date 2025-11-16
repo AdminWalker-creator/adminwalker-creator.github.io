@@ -1,23 +1,48 @@
-// Import Firebase SDKs
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// Firebase Config
 const firebaseConfig = {
-  apiKey: "AIzaSyCUw599ZSYdjmv5uJFgsxyRW16Fs9ef4Qg",
-  authDomain: "aw-community-chat.firebaseapp.com",
-  projectId: "aw-community-chat",
-  storageBucket: "aw-community-chat.firebasestorage.app",
-  messagingSenderId: "753015399762",
-  appId: "1:753015399762:web:50e8094b2d0cf4a344c68b"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_BUCKET",
+  messagingSenderId: "YOUR_ID",
+  appId: "YOUR_APP"
 };
 
-// Initialize Firebase App
 const app = initializeApp(firebaseConfig);
-
-// Init Firestore
 const db = getFirestore(app);
 
-// Export db so other scripts can use it
-export { db, collection, addDoc, onSnapshot, serverTimestamp };
+const chatBox = document.getElementById("chat-box");
+const nameInput = document.getElementById("name-input");
+const messageInput = document.getElementById("message-input");
+const sendBtn = document.getElementById("send-btn");
+
+sendBtn.onclick = async () => {
+  const name = nameInput.value.trim();
+  const text = messageInput.value.trim();
+  if (!name || !text) return;
+
+  await addDoc(collection(db, "messages"), {
+    name,
+    text,
+    time: serverTimestamp()
+  });
+
+  messageInput.value = "";
+};
+
+const q = query(collection(db, "messages"), orderBy("time"));
+
+onSnapshot(q, (snapshot) => {
+  chatBox.innerHTML = "";
+  snapshot.forEach((doc) => {
+    const msg = doc.data();
+    const div = document.createElement("div");
+    div.className = "msg";
+    div.innerText = `${msg.name}: ${msg.text}`;
+    chatBox.appendChild(div);
+  });
+  chatBox.scrollTop = chatBox.scrollHeight;
+});
