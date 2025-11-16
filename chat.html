@@ -1,111 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>A_W Community Chat</title>
-
-<style>
-    body {
-        margin: 0;
-        background: #020814;
-        color: white;
-        font-family: Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-    }
-
-    h1 {
-        text-align: center;
-        padding: 15px 0;
-    }
-
-    #chat-box {
-        flex: 1;
-        overflow-y: auto;
-        background: #0b1426;
-        border: 2px solid #00c4a8;
-        margin: 0 15px;
-        padding: 10px;
-        border-radius: 10px;
-    }
-
-    .msg {
-        background: #112039;
-        padding: 10px;
-        margin-bottom: 10px;
-        border-radius: 8px;
-        word-wrap: break-word;
-    }
-
-    .username {
-        font-weight: bold;
-        color: #00c4a8;
-    }
-
-    #input-area {
-        display: flex;
-        padding: 10px;
-        background: #0b1426;
-    }
-
-    #name-input, #message-input {
-        flex: 1;
-        margin-right: 10px;
-        padding: 10px;
-        border-radius: 6px;
-        border: none;
-        outline: none;
-    }
-
-    #send-btn {
-        padding: 10px 20px;
-        background: #00c4a8;
-        border: none;
-        border-radius: 6px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    #send-btn:hover {
-        background: #00e2c2;
-    }
-</style>
+<title>Chat • A_W Community</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<h1>A_W Community Chat</h1>
+<header>
+    <img src="logo.png" class="logo">
+    <h1>A_W Community Chat</h1>
 
-<div id="chat-box"></div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="chat.html">Chat</a>
+        <a href="create.html">Create Community</a>
+    </nav>
+</header>
 
-<div id="input-area">
-    <input type="text" id="name-input" placeholder="Your name..." />
-    <input type="text" id="message-input" placeholder="Type a message..." />
-    <button id="send-btn">Send</button>
-</div>
+<section class="box">
+    <h2>Global Chat</h2>
 
-<!-- FIREBASE SCRIPTS -->
-<script type="module">
-    // Firebase imports
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy } 
-    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    <input type="text" id="username" placeholder="Enter username..." class="input">
+    <div id="chatbox" class="chatbox"></div>
 
-    // Your Firebase config
-    const firebaseConfig = {
-      apiKey: "AIzaSyCUw599ZSYdjmv5uJFgsxyRW16Fs9ef4Qg",
-      authDomain: "aw-community-chat.firebaseapp.com",
-      projectId: "aw-community-chat",
-      storageBucket: "aw-community-chat.firebasestorage.app",
-      messagingSenderId: "753015399762",
-      appId: "1:753015399762:web:50e8094b2d0cf4a344c68b"
-    };
+    <input type="text" id="message" placeholder="Type message..." class="input">
+    <button onclick="sendMessage()" class="btn">Send</button>
+</section>
 
-    // Init Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+<script src="script.js"></script>
+
+</body>
+</html>    const db = getFirestore(app);
 
     const chatBox = document.getElementById("chat-box");
     const nameInput = document.getElementById("name-input");
