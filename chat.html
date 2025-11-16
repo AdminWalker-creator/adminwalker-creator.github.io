@@ -1,58 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>A_W Community — Chat</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Chat</title>
+
+    <style>
+        body {
+            background: #0c111b;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #chat-box {
+            width: 90%;
+            max-width: 500px;
+            height: 350px;
+            margin: auto;
+            background: #111827;
+            overflow-y: auto;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: left;
+        }
+        .msg {
+            padding: 5px 8px;
+            margin-bottom: 4px;
+            background: #1f2937;
+            border-radius: 8px;
+        }
+        #inputs {
+            margin-top: 20px;
+        }
+        input {
+            padding: 8px;
+            border-radius: 6px;
+            border: none;
+            width: 60%;
+            margin-bottom: 8px;
+        }
+        button {
+            padding: 8px 14px;
+            background: #0284c7;
+            border: none;
+            color: white;
+            border-radius: 6px;
+        }
+    </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="left">
-      <img src="logo.png" class="logo" alt="A_W Logo">
-      <h1>A_W Community</h1>
+
+    <h1>Global Chat</h1>
+
+    <div id="chat-box"></div>
+
+    <div id="inputs">
+        <input id="name-input" placeholder="Enter username..."><br>
+        <input id="message-input" placeholder="Type message...">
+        <button id="send-btn">Send</button>
     </div>
 
-    <div class="right">
-      <select id="roomSelect" title="Select room"></select>
-      <span id="onlineCount">Online: 0</span>
-      <button id="adminBtn" class="small">Admin</button>
-    </div>
-  </header>
+    <!-- IMPORTANT: Load JS correctly -->
+    <script type="module" src="script.js"></script>
 
-  <main class="layout">
-    <aside class="sidebar">
-      <div class="panel">
-        <h3>Profile</h3>
-        <input id="nameInput" placeholder="Your name" />
-        <input id="avatarInput" placeholder="Avatar URL (optional)" />
-        <div class="small muted">Owner: <strong>A_W</strong> — Admin: <strong>Admin</strong></div>
-      </div>
-
-      <div class="panel">
-        <h3>Rooms</h3>
-        <div id="roomsList"></div>
-      </div>
-
-      <div class="panel">
-        <h3>Typing</h3>
-        <div id="typingIndicator" class="small muted"></div>
-      </div>
-    </aside>
-
-    <section class="chat-area">
-      <div id="messages" aria-live="polite"></div>
-
-      <div class="input-row">
-        <input id="messageInput" placeholder="Type a message..." autocomplete="off" />
-        <button id="sendBtn" class="btn">Send</button>
-      </div>
-    </section>
-  </main>
-
-  <footer class="foot">© 2025 A_W Community</footer>
-
-  <!-- main script (module for firebase imports) -->
-  <script type="module" src="script.js"></script>
 </body>
 </html>
