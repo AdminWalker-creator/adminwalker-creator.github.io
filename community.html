@@ -1,1 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Community</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<header>
+    <img src="logo.png" class="logo">
+    <h1 id="commTitle">Community</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="chat.html">Chat</a>
+        <a href="create.html">Create Community</a>
+    </nav>
+</header>
+
+<section class="box">
+    <img id="commLogo" style="width:120px;">
+    <h2 id="commName"></h2>
+    <p id="commDesc"></p>
+</section>
+
+<section class="box">
+    <h3>Community Chat</h3>
+
+    <input type="text" id="username" class="input" placeholder="Enter username">
+    <div id="commChatbox" class="chatbox"></div>
+
+    <input type="text" id="commMsg" class="input" placeholder="Your message">
+    <button onclick="sendCommunityMessage()" class="btn">Send</button>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
